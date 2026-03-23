@@ -14,40 +14,59 @@
   .btn { display: block; width: 100%; padding: 16px 24px; background: #7c3aed; color: white; text-decoration: none; border-radius: 14px; font-size: 1.15rem; font-weight: 600; border: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .btn:active { background: #6d28d9; transform: scale(0.98); }
   .subtle { color: #666; font-size: 0.8rem; margin-top: 1.2rem; line-height: 1.4; }
-  .status { color: #4ade80; font-size: 0.9rem; margin-top: 1rem; display: none; }
+  .status { color: #4ade80; font-size: 0.9rem; margin-top: 1rem; }
+  .error { color: #f87171; }
+  .hidden { display: none; }
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="icon">📂</div>
-  <h1>פתיחה באובסידיאן</h1>
+  <div class="icon" id="icon">&#9203;</div>
+  <h1 id="heading">פותח באובסידיאן...</h1>
   <p class="filename" id="filename"></p>
-  <a id="open-btn" class="btn" href="#">פתח באובסידיאן</a>
-  <p class="status" id="status">✅ נשלח לאובסידיאן</p>
-  <p class="subtle">לוחצים על הכפתור → אובסידיאן נפתח עם הקובץ.<br>אם לא עובד — וודא שאובסידיאן מותקן.</p>
+  <a id="open-btn" class="btn hidden" href="#">פתח באובסידיאן</a>
+  <p class="status" id="status"></p>
+  <p class="subtle" id="hint"></p>
 </div>
 <script>
-  const params = new URLSearchParams(window.location.search);
-  const file = params.get('f') || '';
-  const vault = params.get('v') || 'NEW OBSIDIAN';
-  const uri = 'obsidian://open?vault=' + encodeURIComponent(vault) + '&file=' + encodeURIComponent(file);
+  var params = new URLSearchParams(window.location.search);
+  var file = params.get('f') || '';
+  var vault = params.get('v') || 'NEW OBSIDIAN';
+  var uri = 'obsidian://open?vault=' + encodeURIComponent(vault) + '&file=' + encodeURIComponent(file);
 
+  var iconEl = document.getElementById('icon');
+  var headingEl = document.getElementById('heading');
   var fnEl = document.getElementById('filename');
   var btnEl = document.getElementById('open-btn');
   var statusEl = document.getElementById('status');
+  var hintEl = document.getElementById('hint');
 
   if (file) {
     fnEl.textContent = file;
     btnEl.href = uri;
+
+    // Auto-redirect immediately
+    window.location.href = uri;
+
+    // After 1.5s show fallback UI in case redirect didn't fire
+    setTimeout(function() {
+      iconEl.textContent = '\uD83D\uDCC2';
+      headingEl.textContent = '\u05DC\u05D0 \u05E0\u05E4\u05EA\u05D7? \u05DC\u05D7\u05E5 \u05DB\u05D0\u05DF:';
+      btnEl.classList.remove('hidden');
+      hintEl.textContent = '\u05D0\u05DD \u05D0\u05D5\u05D1\u05E1\u05D9\u05D3\u05D9\u05D0\u05DF \u05DC\u05D0 \u05E0\u05E4\u05EA\u05D7 \u2014 \u05D5\u05D5\u05D3\u05D0 \u05E9\u05D4\u05D0\u05E4\u05DC\u05D9\u05E7\u05E6\u05D9\u05D4 \u05DE\u05D5\u05EA\u05E7\u05E0\u05EA.';
+    }, 1500);
+
     btnEl.addEventListener('click', function(e) {
       e.preventDefault();
       window.location.href = uri;
-      statusEl.style.display = 'block';
+      statusEl.textContent = '\u2705 \u05E0\u05E9\u05DC\u05D7 \u05DC\u05D0\u05D5\u05D1\u05E1\u05D9\u05D3\u05D9\u05D0\u05DF';
     });
   } else {
-    fnEl.textContent = 'לא צוין קובץ';
-    btnEl.style.background = '#555';
-    btnEl.textContent = 'חסר פרמטר f=';
+    iconEl.textContent = '\u26A0\uFE0F';
+    headingEl.textContent = '\u05D7\u05E1\u05E8 \u05E4\u05E8\u05DE\u05D8\u05E8';
+    headingEl.classList.add('error');
+    fnEl.textContent = '\u05DC\u05D0 \u05E6\u05D5\u05D9\u05DF \u05E7\u05D5\u05D1\u05E5';
+    hintEl.textContent = '\u05E9\u05D9\u05DE\u05D5\u05E9: ?f=08_TASKS/KANBAN';
   }
 </script>
 </body>
