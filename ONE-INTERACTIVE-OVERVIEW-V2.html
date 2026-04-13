@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ONE™ Program — Interactive Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== ONE™ DESIGN SYSTEM — HOWLITE (LIGHT) ===== */
+:root {
+  --bg: #FFFFFF;
+  --bg-alt: #F8F8F8;
+  --text: #1A1A1A;
+  --text-secondary: #333333;
+  --text-muted: #6B6B6B;
+  --border: #E0E0E0;
+  --border-light: #EBEBEB;
+  --accent: #000000;
+  --level-badge: #2A2A2A;
+  --blockquote-border: #1A1A1A;
+  --max-content: 680px;
+  --max-wide: 860px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Heebo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.container--wide {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+h1, h2, h3, h4 { font-weight: 700; line-height: 1.3; }
+
+/* ===== HIGHLIGHT PILL ===== */
+.pill {
+  display: inline-block;
+  background: var(--accent);
+  color: #FFFFFF;
+  padding: 1px 10px;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 0.9em;
+}
+
+/* ===== BLOCKQUOTE ===== */
+blockquote {
+  border-right: 3px solid var(--blockquote-border);
+  padding-right: 20px;
+  margin: 24px 0;
+  color: var(--text-secondary);
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* ===== TOP CALLOUT ===== */
+.top-callout {
+  background: var(--accent);
+  color: #FFFFFF;
+  padding: 14px 32px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ===== COVER ===== */
+.cover {
+  padding: 100px 32px 80px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cover-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.cover h1 {
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 20px;
+  line-height: 1.2;
+  max-width: var(--max-content);
+}
+
+.cover-sub {
+  font-size: 20px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+.cover-qualifier {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 48px;
+  max-width: 480px;
+}
+
+.stats-row {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-light);
+}
+
+.stat-item { text-align: right; }
+
+.stat-number {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--text);
+  display: block;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ===== SECTION BASE ===== */
+.section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.section h2 {
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 900;
+  margin-bottom: 24px;
+  line-height: 1.25;
+}
+
+.section p {
+  color: var(--text-secondary);
+  font-size: 17px;
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+
+.section p:last-child { margin-bottom: 0; }
+
+/* ===== PAIN SECTION ===== */
+.pain-list {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0;
+}
+
+.pain-list li {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.pain-list li:last-child { border-bottom: none; }
+
+.pain-mark {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ===== PLACEHOLDER SECTION ===== */
+.placeholder-section {
+  background: var(--bg-alt);
+  border: 2px dashed var(--border);
+  border-radius: 4px;
+  padding: 40px;
+  margin: 0;
+  text-align: center;
+}
+
+.placeholder-section .placeholder-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.placeholder-section .placeholder-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.placeholder-section .placeholder-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+/* ===== POSI HERO ===== */
+.posi-hero {
+  background: var(--accent);
+  color: #FFFFFF;
+  padding: 80px 32px;
+}
+
+.posi-hero .container { max-width: var(--max-content); margin: 0 auto; }
+
+.posi-hero .section-label {
+  color: rgba(255,255,255,0.5);
+}
+
+.posi-hero h2 {
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: #FFFFFF;
+  line-height: 1.25;
+}
+
+.posi-hero p {
+  color: rgba(255,255,255,0.8);
+  font-size: 17px;
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+
+.posi-hero p strong { color: #FFFFFF; }
+
+.posi-steps {
+  margin-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 32px;
+}
+
+.posi-step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.posi-step:last-child { border-bottom: none; }
+
+.posi-step-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  flex-shrink: 0;
+  margin-top: 2px;
+  width: 24px;
+}
+
+.posi-step-text {
+  font-size: 16px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+}
+
+.posi-step-text strong { color: #FFFFFF; }
+
+/* ===== LEVEL SECTIONS ===== */
+.level-section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.level-header {
+  margin-bottom: 40px;
+}
+
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.level-num {
+  background: var(--level-badge);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border-radius: 3px;
+}
+
+.level-name {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.level-header h2 {
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 900;
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.level-outcome {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  line-height: 1.6;
+}
+
+.level-meta {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.level-body p {
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+
+/* ===== DELIVERABLES ===== */
+.deliverables {
+  margin: 32px 0;
+  border-top: 1px solid var(--border-light);
+  padding-top: 24px;
+}
+
+.deliverables-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.deliverables ul {
+  list-style: none;
+  padding: 0;
+}
+
+.deliverables li {
+  padding: 10px 0;
+  font-size: 15px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  line-height: 1.6;
+}
+
+.deliverables li:last-child { border-bottom: none; }
+
+.deliverables li::before {
+  content: "—";
+  color: var(--text-muted);
+  flex-shrink: 0;
+  font-weight: 300;
+}
+
+/* ===== MODULE CARDS ===== */
+.module-list { margin: 32px 0; }
+
+.module-card {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.module-card:last-child { border-bottom: none; }
+
+.module-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.module-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.module-num {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.module-tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tag-needle {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+.tag-foundation {
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.tag-nice {
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.module-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  line-height: 1.75;
+}
+
+.module-outcome {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 14px;
+  border-right: 2px solid var(--border);
+  padding-right: 12px;
+}
+
+.module-resources {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.res-tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 2px;
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  letter-spacing: 0.5px;
+}
+
+/* ===== POSI GATE ===== */
+.posi-gate {
+  margin-top: 40px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  background: var(--bg-alt);
+}
+
+.posi-gate strong { color: var(--text); }
+
+/* ===== FRAMEWORK BOX ===== */
+.framework-box {
+  border-right: 3px solid var(--accent);
+  padding: 24px 24px 24px 0;
+  margin: 24px 0;
+  padding-right: 24px;
+}
+
+.framework-box h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.framework-box p, .framework-box li {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.framework-box ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 12px;
+}
+
+.framework-box li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.framework-box li:last-child { border-bottom: none; }
+
+/* ===== FLYWHEEL STEPS ===== */
+.flywheel-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 24px;
+}
+
+.flywheel-step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.flywheel-step:last-child { border-bottom: none; }
+
+.flywheel-num {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  width: 20px;
+  margin-top: 2px;
+}
+
+.flywheel-text {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.flywheel-text strong { color: var(--text); }
+
+/* ===== CTA SECTION ===== */
+.cta-section {
+  padding: 100px 32px;
+  text-align: center;
+  background: var(--bg-alt);
+}
+
+.cta-section h2 {
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 900;
+  margin-bottom: 16px;
+  line-height: 1.25;
+}
+
+.cta-section p {
+  font-size: 17px;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+/* ===== VALUE STACK ===== */
+.value-stack {
+  border-top: 1px solid var(--border);
+  margin: 40px 0 0;
+}
+
+.value-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-light);
+  gap: 24px;
+}
+
+.value-item-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.value-item-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.value-item-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.value-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 48px 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ===== SPRINT SECTION (special) ===== */
+.sprint-section {
+  background: var(--bg-alt);
+  border-top: 3px solid var(--accent);
+  padding: 80px 0;
+}
+
+.sprint-section .section-label { color: var(--text-muted); }
+
+.sprint-section h2 {
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.sprint-promise {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+@media (max-width: 640px) {
+  .stats-row { gap: 28px; }
+  .cover { padding: 64px 24px 48px; }
+  .section { padding: 60px 0; }
+  .level-section { padding: 60px 0; }
+  .container, .container--wide { padding: 0 20px; }
+}
+
+@media print {
+  .level-section { break-before: page; }
+  .placeholder-section { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP CALLOUT -->
+<div class="top-callout">
+  התוכנית היחידה בישראל שבה לא מתקדמים הלאה בלי להוכיח יישום
+</div>
+
+<!-- ============================================
+     COVER
+     ============================================ -->
+<header class="cover">
+  <div class="container">
+    <div class="cover-eyebrow">ONE™ PROGRAM</div>
+
+    <h1>כסף ראשון תוך 30 יום.<br>מכונה שמביאה לקוחות אחר כך לבד.</h1>
+
+    <p class="cover-sub">
+      24 שבועות. מאפס — למערכת שיווק והמרה שעובדת כשאתה ישן.
+    </p>
+
+    <p class="cover-qualifier">
+      למומחים, מאמנים ויועצים שיודעים לתת ערך — ועדיין מוצאים את עצמם רודפים אחרי לקוחות כל חודש מחדש.
+    </p>
+
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-number">10</span>
+        <span class="stat-label">Levels</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">68</span>
+        <span class="stat-label">מודולים</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">68</span>
+        <span class="stat-label">Playbooks</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">40+</span>
+        <span class="stat-label">תבניות</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">24</span>
+        <span class="stat-label">שבועות</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================
+     PLACEHOLDER: BEN'S STORY
+     ============================================ -->
+<section class="section" style="padding: 80px 0;">
+  <div class="container">
+    <div class="placeholder-section">
+      <div class="placeholder-label">PLACEHOLDER — סיפור מקור</div>
+      <div class="placeholder-title">3 פסקאות — סיפור בן</div>
+      <div class="placeholder-desc">מה גרם לך לבנות את ONE™. מה ניסית לפניו שלא עבד. מה גילית שאחרים לא אמרו לך. תוצאה אחת אמיתית שלך.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PROBLEM AGITATION
+     ============================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">האם זה נשמע מוכר?</div>
+    <h2>הבעיה לא שאתה לא טוב מספיק.<br>הבעיה שאף אחד לא לימד אותך <span class="pill">את זה</span>.</h2>
+
+    <ul class="pain-list">
+      <li>
+        <span class="pain-mark">—</span>
+        <span>אתה מפרסם תוכן כמעט כל יום. מקבל לייקים. לפעמים שיתופים. לקוחות? אחד בחודש, אם בכלל. הפער בין תשומת לב לכסף לא מתסביר.</span>
+      </li>
+      <li>
+        <span class="pain-mark">—</span>
+        <span>יש לך עוד קורס שקנית ולא גמרת. עוד "שיטה" ששמעת בפודקאסט. צפית ב-40 אחוז. הרגשת טוב. שום דבר לא השתנה.</span>
+      </li>
+      <li>
+        <span class="pain-mark">—</span>
+        <span>כל חודש אתה מתחיל מאפס. אין מנגנון שמביא לקוחות בלי שאתה תרדוף אחריהם. כל לקוח חדש הוא מאמץ אחד ידני נוסף.</span>
+      </li>
+      <li>
+        <span class="pain-mark">—</span>
+        <span>שיחות מכירה שאתה שונא לעשות אותן. שעה מול מישהו שבסוף אומר "אני צריך לחשוב על זה". אתה יודע שיש דרך טובה יותר — אף אחד עוד לא הראה לך איך.</span>
+      </li>
+    </ul>
+
+    <blockquote>
+      הבעיה לא שאין לך מה להציע. הבעיה שאין לך <strong>מערכת</strong> שגורמת לאנשים הנכונים לבוא אליך כבר כשהם מוכנים לקנות.
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============================================
+     PLACEHOLDER: SOCIAL PROOF
+     ============================================ -->
+<section class="section" style="padding: 80px 0;">
+  <div class="container">
+    <div class="placeholder-section">
+      <div class="placeholder-label">PLACEHOLDER — הוכחה חברתית</div>
+      <div class="placeholder-title">3 תוצאות אמיתיות מלקוחות</div>
+      <div class="placeholder-desc">שם + מקצוע + מצב לפני → מצב אחרי + מספר קונקרטי (₪X בX שבועות). לא פרסונות. לקוחות אמיתיים.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     POSI — HERO DIFFERENTIATOR
+     ============================================ -->
+<div class="posi-hero">
+  <div class="container">
+    <div class="section-label">מה עושה את ONE™ שונה</div>
+    <h2>התוכנית היחידה שבה<br>לא מתקדמים בלי להוכיח <span style="text-decoration: underline; text-underline-offset: 4px;">שיישמת</span>.</h2>
+
+    <p>
+      רוב הקורסים מוכרים לך גישה לסרטונים. אתה צופה, מרגיש טוב, ולא עושה כלום.
+      ב-ONE™ זה בלתי אפשרי — כי כל Level נעול עד שתוכיח שעשית את העבודה.
+    </p>
+
+    <p>
+      זה נקרא <strong>POSI — Proof of Skill Implementation</strong>. לא מבחן ידע. לא קוויז.
+      שאלות כאלה: "האם יש לך Offer Doc מוכן?" "האם שלחת 5 DMs?" "האם יש לך לקוח ראשון?"
+      <br>כן = Level הבא נפתח. לא = חוזר להשלים.
+    </p>
+
+    <div class="posi-steps">
+      <div class="posi-step">
+        <span class="posi-step-num">01</span>
+        <span class="posi-step-text"><strong>גמרת Level?</strong> POSI Quiz מחכה — שאלות על מה שעשית בפועל, לא מה שלמדת תיאורטית.</span>
+      </div>
+      <div class="posi-step">
+        <span class="posi-step-num">02</span>
+        <span class="posi-step-text"><strong>עברת?</strong> Level הבא נפתח אוטומטית. ממשיכים.</span>
+      </div>
+      <div class="posi-step">
+        <span class="posi-step-num">03</span>
+        <span class="posi-step-text"><strong>לא עברת?</strong> חוזר לתקן — לא לצפות שוב, לעשות. אי אפשר לדלג. אי אפשר להתעלם.</span>
+      </div>
+      <div class="posi-step">
+        <span class="posi-step-num">04</span>
+        <span class="posi-step-text"><strong>תוצאה:</strong> בסוף ONE™ יש לך מערכת שבנית ויישמת בפועל — לא ידע שצבר אבק.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================
+     HOW THE PROGRAM WORKS
+     ============================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">מבנה התוכנית</div>
+    <h2>10 Levels. סדר קבוע. <span class="pill">אי אפשר לדלג</span>.</h2>
+
+    <p>
+      התוכנית בנויה כמו בניין — כל קומה נשענת על הקודמת.
+      Level 0 מגדיר את נקודת ההתחלה. Levels 1–3 בונים זהות, מודל עסקי, והצעה חדה.
+      ה-Sprint מכניס כסף ראשון תוך 30 יום. Levels 4–8 בונים את המכונה שעובדת אחר כך לבד.
+    </p>
+
+    <p>
+      כל Level מכיל: סרטונים, Playbooks, Worksheets, תבניות, ו-POSI Quiz בסוף.
+      אין תוכן "לצפות בשביל לצפות." כל מודול מסתיים בתוצר קונקרטי שתחזיק ביד.
+    </p>
+
+    <!-- Resource types -->
+    <div class="framework-box" style="margin-top: 40px;">
+      <h4>6 סוגי Resources — מה מחכה בכל מודול</h4>
+      <ul>
+        <li><strong>V — סרטון</strong> &nbsp;5–15 דקות. פנים-למצלמה. לא הרצאה — שיחה ישירה עם דוגמאות אמיתיות.</li>
+        <li><strong>P — Playbook</strong> &nbsp;לא סיכום — כלי עבודה עצמאי. הסבר ממוקד + תרגיל מעשי + checklist ליישום.</li>
+        <li><strong>W — Worksheet</strong> &nbsp;דף מילוי: טבלה, מטריצה, שאלון. ממלאים — ויוצאים עם תוצר.</li>
+        <li><strong>T — Template</strong> &nbsp;מוכן לשימוש מיידי. סקריפט DM, Offer Doc, רצף מיילים. משכפלים ומפעילים.</li>
+        <li><strong>K — Tool Walkthrough</strong> &nbsp;Walkthrough מלא של כלי חיצוני — Brevo, ManyChat, Meta Ads. לא רק "השתמש ב-X" — מראים בדיוק איך.</li>
+        <li><strong>Q — POSI Quiz</strong> &nbsp;שאלון מעבר בסוף כל Level. לא בוחן ידע — בוחן יישום. עברת? ממשיכים.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     LEVEL 0 — START HERE
+     ============================================ -->
+<section class="level-section" id="level-0">
+  <div class="container">
+    <div class="level-header">
+      <div class="level-badge">
+        <span class="level-num">LEVEL 0</span>
+        <span class="level-name">START HERE</span>
+      </div>
+      <h2>יודע בדיוק איפה העסק שלך עומד — ומה הצעד האחד הבא.</h2>
+      <div class="level-outcome">בסוף Level זה: יש לך KPI Tracker מלא, Roadmap אישי לרבעון, ומנגנון accountability שבועי.</div>
+      <div class="level-meta">
+        <span>5 מודולים</span>
+        <span>שבוע 1</span>
+      </div>
+    </div>
+
+    <div class="level-body">
+      <p>
+        לפני שבונים משהו — צריך לדעת מאיפה מתחילים. Level 0 עושה ביקורת מלאה של העסק הנוכחי, מגדיר מדדים, ובונה מנגנון דיווח שבועי. בלי זה אתה צופה בסרטונים בלי כיוון.
+      </p>
+    </div>
+
+    <div class="deliverables">
+      <div class="deliverables-label">יוצאים עם ביד</div>
+      <ul>
+        <li>KPI Tracker — גיליון עם כל המדדים של העסק, מונח מהחודש האחרון</li>
+        <li>Monday Wins Form — מנגנון דיווח שבועי שמייצר accountability</li>
+        <li>Quarterly Audit — ביקורת R/A/G לכל תחום בעסק</li>
+        <li>Roadmap אישי — החסם הכי גדול + פרויקט אחד לרבעון הזה</li>
+      </ul>
+    </div>
+
+    <div class="module-list">
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">0.1 </span>Welcome + Leverage Mindset</div>
+          <span class="module-tag tag-foundation">FOUNDATION</span>
+        </div>
+        <div class="module-desc">היכרות עם התוכנית ועם הגישה שמאחוריה. מה זה Leverage ולמה זה ההבדל בין לעבוד קשה לבין לבנות נכס.</div>
+        <div class="module-outcome">יוצאים עם: Leverage Checklist — מאיפה בא הכסף, איפה נשרף הזמן, מה אפשר להפסיק עוד השבוע.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">W Checklist</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">0.2 </span>טפסים דיגיטליים</div>
+          <span class="module-tag tag-foundation">FOUNDATION</span>
+        </div>
+        <div class="module-desc">הקמת מנגנון ה-accountability. Google Form + תזכורת ביומן. כל שבוע מדווחים מה עשו — בלי דיווח, אין התקדמות.</div>
+        <div class="module-outcome">יוצאים עם: Monday Wins Form פעיל + תזכורת שבועית קבועה ביומן.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">K Google Forms</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">0.3 </span>הרמות — איך זה עובד</div>
+          <span class="module-tag tag-foundation">FOUNDATION</span>
+        </div>
+        <div class="module-desc">הסבר מלא על מבנה ה-10 Levels, מה כל Level מכסה, ואיך POSI עובד — מה צריך להוכיח כדי לעבור הלאה.</div>
+        <div class="module-outcome">יוצאים עם: תמונה ברורה של המסלול המלא + זיהוי ב-Level שנתקעת בעבר ולמה.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">Q POSI Quiz</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">0.4 </span>המדדים שלך — KPIs</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">מה שלא נמדד לא משתפר. מגדירים KPIs, ממלאים נתונים מהחודש האחרון, ובוחרים 2–3 Daily Non-Negotiables.</div>
+        <div class="module-outcome">יוצאים עם: KPI Tracker מלא עם נתוני החודש האחרון + Daily Non-Negotiables מוגדרים.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">W KPI Tracker</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">0.5 </span>Roadmap אישי</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">ביקורת רבעונית מלאה. לכל תחום בעסק — ציון אדום/כתום/ירוק. מזהים חסם מרכזי אחד. בוחרים פרויקט אחד לרבעון — ורק אותו.</div>
+        <div class="module-outcome">יוצאים עם: Quarterly Audit + החסם האחד שמעכב הכל + פרויקט אחד לסגור תוך 12 שבועות.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">W Quarterly Audit</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="posi-gate">
+      <strong>POSI 0:</strong> KPIs מוגדרים + Roadmap אישי מלא + Monday Wins Form פעיל → Level 1 נפתח
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     LEVEL 1 — THE ARCHITECT
+     ============================================ -->
+<section class="level-section" id="level-1">
+  <div class="container">
+    <div class="level-header">
+      <div class="level-badge">
+        <span class="level-num">LEVEL 1</span>
+        <span class="level-name">THE ARCHITECT</span>
+      </div>
+      <h2>יודע בדיוק כמה כסף אתה צריך — ומי אתה הופך להיות כדי להגיע לשם.</h2>
+      <div class="level-outcome">בסוף Level זה: Freedom Number מוגדר, זהות חדשה כתובה, Peak Week מתוכנן ביומן.</div>
+      <div class="level-meta">
+        <span>4 מודולים</span>
+        <span>שבועות 2–3</span>
+      </div>
+    </div>
+
+    <div class="level-body">
+      <p>
+        לפני שבונים עסק, בונים את האדם שיפעיל אותו. Level 1 מגדיר יעד כלכלי חד (Freedom Number), כותב זהות חדשה, מגדיר 5 יעדי North Star, ועוצב שבוע אידיאלי. אחרי Level 1 — יש בהירות מלאה.
+      </p>
+    </div>
+
+    <div class="deliverables">
+      <div class="deliverables-label">יוצאים עם ביד</div>
+      <ul>
+        <li>Freedom Number — מספר אחד: כמה כסף חודשי צריך כדי לחיות את החיים הרצויים (כולל מסים + תפעול)</li>
+        <li>Identity Script — הזהות החדשה כתובה ("אני מסוג האנשים ש...") + Vision Board</li>
+        <li>5 North Star Goals — יעד ספציפי לכל תחום: בריאות, עושר, מערכות יחסים, אמונה, השפעה</li>
+        <li>Peak Week — שבוע מלא מתוכנן: 3 שעונים מעוררים + ימים קבועים + יום כיף</li>
+      </ul>
+    </div>
+
+    <div class="module-list">
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">1.1 </span>The Freedom Number</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">תרגיל של 3 דקות שנותן בהירות לשנים. מחשבים מספר אחד: כמה כסף חודשי נדרש — כולל מסים, ביטוחים, ותפעול. המספר הזה הופך ליעד.</div>
+        <div class="module-outcome">יוצאים עם: Freedom Number על מסך הטלפון + Freedom Calculator מלא.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">W Freedom Calculator</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">1.2 </span>הזהות החדשה</div>
+          <span class="module-tag tag-foundation">FOUNDATION</span>
+        </div>
+        <div class="module-desc">כתיבת "מי אני הופך להיות" — לא מי שהייתי. Future Vision Statement + Identity Script שקוראים כל בוקר + Vision Board על הקיר.</div>
+        <div class="module-outcome">יוצאים עם: Identity Script מוכן + Vision Board תלוי.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">T Identity Script Template</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">1.3 </span>גרסת 10.0</div>
+          <span class="module-tag tag-foundation">FOUNDATION</span>
+        </div>
+        <div class="module-desc">הגדרת 5 יעדי North Star — אחד לכל תחום: בריאות, עושר, מערכות יחסים, אמונה/רוחניות, השפעה חברתית. הגרסה הטובה ביותר שלך.</div>
+        <div class="module-outcome">יוצאים עם: 10.0 Toolkit — יעד ספציפי + הגדרת הצלחה לכל אחד מ-5 התחומים.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">W 10.0 Toolkit</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">1.4 </span>Peak Week™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">עיצוב השבוע האידיאלי. לא To-Do List — מבנה קבוע: 3 שעונים מעוררים, ימים קבועים (יום תוכן, יום לקוחות), יום כיף, וזמן גמיש.</div>
+        <div class="module-outcome">יוצאים עם: Peak Week Template מלא + 3 Alarms ב-Google Calendar + יום כיף קבוע ביומן.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">W Peak Week Template</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="posi-gate">
+      <strong>POSI 1:</strong> Freedom Number מוגדר + זהות חדשה כתובה + Peak Week ביומן → Level 2 נפתח
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     LEVEL 2 — THE BLUEPRINT
+     ============================================ -->
+<section class="level-section" id="level-2">
+  <div class="container">
+    <div class="level-header">
+      <div class="level-badge">
+        <span class="level-num">LEVEL 2</span>
+        <span class="level-name">THE BLUEPRINT</span>
+      </div>
+      <h2>רואה את המכונה כולה — ויודע איזה חלק שלה שבור.</h2>
+      <div class="level-outcome">בסוף Level זה: Flywheel Audit מלא, Golden Client Journey ממוּפה, 2 פרויקטים רבעוניים.</div>
+      <div class="level-meta">
+        <span>5 מודולים</span>
+        <span>שבוע 3</span>
+      </div>
+    </div>
+
+    <div class="level-body">
+      <p>
+        עכשיו שיש בהירות על לאן הולכים — צריך להבין את המכונה. Level 2 מציג את הלולאה האינסופית של לקוחות (Infinite Client Loop), את ONE Flywheel™ (הגלגל שמסובב את העסק), את מסע הלקוח המלא מ-Post ראשון ועד case study, ומגדיר פוקוס — דבר אחד לרבעון — תוך הימנעות ממלכודת המינוף.
+      </p>
+    </div>
+
+    <div class="deliverables">
+      <div class="deliverables-label">יוצאים עם ביד</div>
+      <ul>
+        <li>Flywheel Audit — R/A/G לכל 6 חלקים + זיהוי החסם האחד</li>
+        <li>Golden Client Journey — מפה מלאה: Post → Follower → Lead → Client → Case Study</li>
+        <li>2 פרויקטים רבעוניים — 1 צמיחה + 1 שיפור</li>
+      </ul>
+    </div>
+
+    <div class="module-list">
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">2.1 </span>Infinite Client Loop ♾️</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">הרעיון הפשוט שמשנה הכל: כל לקוח שמגיע — אם תעשה את העבודה נכון — מביא את הלקוח הבא. לא בכוח, לא בבקשה. ה-Loop בונה את עצמו.</div>
+        <div class="module-outcome">יוצאים עם: הבנה ברורה של איפה הלולאה שבורה אצלך עכשיו + מה צריך לתקן ראשון.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">G גרפיקה</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">2.2 </span>ONE Flywheel™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">הכלי המרכזי של ONE™. הגלגל שמסובב את העסק כולו — כשהוא מסתובב, הכל עובד. כשחלק אחד תקוע, הגלגל עוצר. עושים ביקורת מלאה ומזהים את החסם.</div>
+
+        <div class="framework-box">
+          <h4>ONE Flywheel™ — 6 החלקים</h4>
+          <div class="flywheel-steps">
+            <div class="flywheel-step">
+              <span class="flywheel-num">1</span>
+              <span class="flywheel-text"><strong>Content</strong> — יוצר תוכן שמושך את הקהל הנכון</span>
+            </div>
+            <div class="flywheel-step">
+              <span class="flywheel-num">2</span>
+              <span class="flywheel-text"><strong>Audience</strong> — בונה קהל עוקבים רלוונטי</span>
+            </div>
+            <div class="flywheel-step">
+              <span class="flywheel-num">3</span>
+              <span class="flywheel-text"><strong>Leads</strong> — לוכד לידים לרשימה/קהילה</span>
+            </div>
+            <div class="flywheel-step">
+              <span class="flywheel-num">4</span>
+              <span class="flywheel-text"><strong>Sales</strong> — ממיר לידים ללקוחות</span>
+            </div>
+            <div class="flywheel-step">
+              <span class="flywheel-num">5</span>
+              <span class="flywheel-text"><strong>Delivery</strong> — מספק תוצאות ללקוח</span>
+            </div>
+            <div class="flywheel-step">
+              <span class="flywheel-num">6</span>
+              <span class="flywheel-text"><strong>Proof</strong> — אוסף הוכחות וחוזר ל-Content → הגלגל מואץ</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-outcome">יוצאים עם: Flywheel Roadmap מלא + Flywheel Audit — R/A/G לכל 6 חלקים.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">W Flywheel Audit</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">2.3 </span>Golden Client Journey</div>
+          <span class="module-tag tag-foundation">FOUNDATION</span>
+        </div>
+        <div class="module-desc">מפת מסע הלקוח המלאה — מהרגע שרואה פוסט ועד שהופך ל-case study. זה ה-"מה צריך לבנות". ה-Levels הבאים מלמדים את ה-"איך".</div>
+        <div class="module-outcome">יוצאים עם: Journey Map מלא + זיהוי ה-"חור" — איפה לידים נופלים כרגע.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">W Journey Map</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">2.4 </span>The Next One Thing</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">הבעיה של רוב היזמים: עובדים על 5 דברים במקביל ולא מסיימים כלום. הפתרון: 2 פרויקטים לרבעון בלבד — 1 צמיחה + 1 שיפור.</div>
+        <div class="module-outcome">יוצאים עם: 2 פרויקטים רבעוניים מוגדרים + תאריך סיום לכל אחד.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">W Quarterly Plan</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">2.5 </span>The Leverage Trap</div>
+          <span class="module-tag tag-foundation">FOUNDATION</span>
+        </div>
+        <div class="module-desc">למה רוב היזמים "עסוקים" אבל לא מרוויחים יותר? כי הם בונים מינוף במקום הלא נכון. Level זה חושף את המלכודת — ונותן את מפת הדרכים לצאת ממנה.</div>
+        <div class="module-outcome">יוצאים עם: Leverage Checklist — מה מייצר מינוף אמיתי אצלך ומה רק מראה עסוקות.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">W Leverage Checklist</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="posi-gate">
+      <strong>POSI 2:</strong> Flywheel Roadmap מלא + Client Journey ממוּפה + "Next One Thing" מוגדר → Level 3 נפתח
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     LEVEL 3 — THE OFFER
+     ============================================ -->
+<section class="level-section" id="level-3">
+  <div class="container">
+    <div class="level-header">
+      <div class="level-badge">
+        <span class="level-num">LEVEL 3</span>
+        <span class="level-name">THE OFFER</span>
+      </div>
+      <h2>הצעה אחת חדה — שאפשר למכור אותה מחר.</h2>
+      <div class="level-outcome">בסוף Level זה: ONE Matrix™ מלא, מחיר מוגדר, Offer Doc מוכן לשליחה, ו-Halo Document כתוב.</div>
+      <div class="level-meta">
+        <span>7 מודולים</span>
+        <span>שבועות 4–6</span>
+      </div>
+    </div>
+
+    <div class="level-body">
+      <p>
+        רוב המומחים מוכרים "ליווי" ו"ייעוץ". זה לא הצעה — זה תיאור תפקיד. Level 3 בונה הצעה שמכירה את עצמה: מי הלקוח, מה הכאב, מה הפתרון, למה דווקא אתה, ומה עולה. בסוף — יש Offer Doc מוכן לשלוח.
+      </p>
+    </div>
+
+    <div class="deliverables">
+      <div class="deliverables-label">יוצאים עם ביד</div>
+      <ul>
+        <li>Halo Document — מסמך מחקר לקוח: כאבים, ניסוחים, מה הם רוצים לשמוע</li>
+        <li>ONE Matrix™ — 3×3 Grid: מי הלקוח × מה הכאב × מה הפתרון</li>
+        <li>Maturity Stairs — מיפוי 5 רמות מודעות + תוכן לכל שלב</li>
+        <li>ה-Blueprint™ — מסמך המערכת המלאה שמביאה לקוחות</li>
+        <li>חמשת המפתחות™ — 5 עקרונות המכירה ללא שיחות מכירה</li>
+        <li>ONE WAY IN™ — נתיב כניסה אחד: איך follower הופך ללקוח</li>
+        <li>Offer Doc מוכן לשליחה — עם מחיר, מה כלול, ולמי זה מתאים</li>
+      </ul>
+    </div>
+
+    <div class="module-list">
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">3.1 </span>ה-Blueprint™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">המפה המלאה של מערכת ONE™ — איך כל חלק מחובר. מבין את ה-"מה" לפני שמבין את ה-"איך". התמונה הגדולה.</div>
+        <div class="module-outcome">יוצאים עם: תמונה ברורה של המערכת המלאה + מיפוי מה כבר קיים ומה חסר.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">3.2 </span>חמשת המפתחות™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">5 עקרונות המכירה ללא שיחות מכירה. לא "טכניקות סגירה" — מבנה שגורם ללקוחות לבוא מוכנים לקנות לפני שדיברתם.</div>
+        <div class="module-outcome">יוצאים עם: הבנה מלאה של מה גורם למישהו לקנות בלי לחץ + Framework לבניית תהליך כזה.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">3.3 </span>Halo Document™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">מחקר לקוח עמוק — לא סקר. כותבים לאנשים שהם הלקוח האידיאלי, שואלים שאלות ספציפיות, ומקבלים ניסוחים מדויקים שהלקוח יגיד "זה בדיוק אני." ה-Copy הכי טוב מגיע ישר מהפה של הלקוח.</div>
+        <div class="module-outcome">יוצאים עם: 5–10 תשובות מלקוחות אמיתיים + ניסוחים מוכנים לשימוש בתוכן ובהצעה.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">T Halo Script</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">3.4 </span>ONE Matrix™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">3×3 Grid שמגדיר: מי הלקוח המושלם, מה הכאב שלו, ומה הפתרון שלך. מבהיר את ה-positioning בדיוק שיורים ברובה.</div>
+        <div class="module-outcome">יוצאים עם: ONE Matrix™ מלא — בסיס לכל תוכן, הצעה, ו-DM שיגיעו אחר כך.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">W ONE Matrix</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">3.5 </span>Maturity Stairs™</div>
+          <span class="module-tag tag-foundation">FOUNDATION</span>
+        </div>
+        <div class="module-desc">5 רמות מודעות של לקוח פוטנציאלי — מ"לא יודע שיש לו בעיה" ועד "מחפש ספק." כל Level של מודעות דורש תוכן שונה.</div>
+        <div class="module-outcome">יוצאים עם: Maturity Stairs Map + אסטרטגיית תוכן לכל שלב.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">W Maturity Map</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">3.6 </span>ONE WAY IN™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">נתיב כניסה אחד ברור. לא 5 מסלולים לבלבל — דרך אחת שמביאה follower להפוך ללקוח. מגדירים אותה ומוודאים שהיא עובדת לפני שמתקדמים.</div>
+        <div class="module-outcome">יוצאים עם: ONE WAY IN™ מוגדר + כל שלב ממוּפה ונבדק.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">W Journey Funnel</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">3.7 </span>Offer Doc</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">בניית מסמך ההצעה המלא — מה כלול, מי זה מתאים לו, מה עולה, מה מקבלים. מסמך שאפשר לשלוח ללקוח ואחריו הוא יודע בדיוק מה הוא קונה.</div>
+        <div class="module-outcome">יוצאים עם: Offer Doc מוכן לשליחה + מחיר מוגדר.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+          <span class="res-tag">T Offer Doc Template</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="posi-gate">
+      <strong>POSI 3:</strong> ONE Matrix™ מלא + Offer Doc מוכן + מחיר מוגדר + Halo Document כתוב → Sprint נפתח
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SPRINT — EMOTIONAL CLIMAX
+     ============================================ -->
+<section class="sprint-section" id="sprint">
+  <div class="container">
+    <div class="section-label">SPRINT — שבועות 7–8</div>
+
+    <div class="sprint-promise">כסף ראשון תוך 30 יום.</div>
+
+    <h2>לפני שבונים מכונה — מוכיחים שההצעה עובדת.</h2>
+
+    <p style="color: var(--text-secondary); font-size: 17px; line-height: 1.9; margin-bottom: 20px;">
+      רוב הקורסים מלמדים תיאוריה שנים לפני שמישהו רואה שקל. ONE™ עובד הפוך.
+      אחרי Level 3 — יש לך הצעה. Sprint מוכיח שהיא נמכרת.
+    </p>
+
+    <p style="color: var(--text-secondary); font-size: 17px; line-height: 1.9; margin-bottom: 32px;">
+      לא ממתינים שהמכונה תהיה מושלמת. שולחים לרשימה חמה. מוכרים. מקבלים כסף. <strong>אז</strong> בונים את המכונה — עם הוכחה שהיא שווה לבנות.
+    </p>
+
+    <div class="deliverables" style="margin-top: 0;">
+      <div class="deliverables-label">יוצאים עם ביד</div>
+      <ul>
+        <li>Hot List — רשימה של 100+ אנשים שיכולים לקנות עכשיו</li>
+        <li>Flash 48 Campaign — 48 שעות של הצעה מוגבלת לרשימה חמה</li>
+        <li>לקוח ראשון + תשלום ראשון</li>
+        <li>Case Study Template — איך מתעדים את הלקוח הזה לפוסט הבא</li>
+      </ul>
+    </div>
+
+    <div class="module-list">
+      <div class="module-card" style="background: #FFFFFF; padding: 28px; border: 1px solid var(--border); border-radius: 3px; margin-bottom: 12px;">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">S.1 </span>Cash Menu</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">לא כל הצעה שווה לנסות עכשיו. בונים תפריט: אילו הצעות אפשר למכור מחר עם מה שיש — ועם איזו מהן תצא ל-Sprint.</div>
+        <div class="module-outcome">יוצאים עם: Cash Menu — 3 אפשרויות ו-1 שנבחרת לביצוע מיידי.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+        </div>
+      </div>
+
+      <div class="module-card" style="background: #FFFFFF; padding: 28px; border: 1px solid var(--border); border-radius: 3px; margin-bottom: 12px;">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">S.2 </span>Revival DM Blitz™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">שיחות ישנות שמתו = כסף שנשאר על השולחן. Revival DM Blitz מחזיר אותן לחיים — עם הודעה אחת נכונה.</div>
+        <div class="module-outcome">יוצאים עם: DM Blitz Script מוכן + 10+ שיחות ישנות שהתחדשו.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+        </div>
+      </div>
+
+      <div class="module-card" style="background: #FFFFFF; padding: 28px; border: 1px solid var(--border); border-radius: 3px; margin-bottom: 12px;">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">S.3 </span>Hot List Email™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">אימייל אחד לרשימה חמה שמניע לפעולה. לא ניוזלטר — הודעה ישירה, אישית, שמציעה משהו ספציפי לאנשים שכבר יודעים מי אתה.</div>
+        <div class="module-outcome">יוצאים עם: Hot List Email מוכן ונשלח — ותגובות ראשונות.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+        </div>
+      </div>
+
+      <div class="module-card" style="background: #FFFFFF; padding: 28px; border: 1px solid var(--border); border-radius: 3px; margin-bottom: 12px;">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">S.4 </span>Flash 48™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">קמפיין 48 שעות לרשימה חמה. הצעה מוגבלת + תוספת ערך ל-X הראשונים. לא מחכים שהכל יהיה מושלם. עושים עכשיו.</div>
+        <div class="module-outcome">יוצאים עם: Flash 48 Campaign שיצא + לפחות פנייה אחת של לקוח מעוניין.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+        </div>
+      </div>
+
+      <div class="module-card" style="background: #FFFFFF; padding: 28px; border: 1px solid var(--border); border-radius: 3px; margin-bottom: 12px;">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">S.5 </span>Dream Client Invite™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">לזהות 5 אנשים שהם בדיוק הלקוח שאתה רוצה — ולפנות אליהם ישירות עם הזמנה ספציפית. לא שיווק המוני. Precision targeting.</div>
+        <div class="module-outcome">יוצאים עם: Dream Client List + Invite Script + לפחות 2 שיחות שנפתחו.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+        </div>
+      </div>
+
+      <div class="module-card" style="background: #FFFFFF; padding: 28px; border: 1px solid var(--border); border-radius: 3px; margin-bottom: 12px;">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">S.6 </span>Beta Cohort Launch™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">מכירת קבוצת Beta — מחיר מייסדים, גישה ישירה. הדרך להכניס כסף לפני שהכל מוכן — ולקבל validation אמיתי מלקוחות שמשלמים.</div>
+        <div class="module-outcome">יוצאים עם: Beta Cohort Page + Founders Price + לפחות 3 הרשמות.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+        </div>
+      </div>
+
+      <div class="module-card" style="background: #FFFFFF; padding: 28px; border: 1px solid var(--border); border-radius: 3px; margin-bottom: 12px;">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">S.7 </span>Founders Pricing Play™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">תמחור חכם שיוצר דחיפות — מחיר מייסדים שפג תוקפו. לא דיסקאונט. הזדמנות שנסגרת — ומי שנכנס עכשיו מקבל ערך שלא יחזור.</div>
+        <div class="module-outcome">יוצאים עם: Founders Pricing Structure + Script לסיום המבצע + כסף שנכנס.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+        </div>
+      </div>
+
+      <div class="module-card" style="background: #FFFFFF; padding: 28px; border: 1px solid var(--border); border-radius: 3px; margin-bottom: 12px;">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">S.8 </span>Behind-The-Curtains Workshop™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">וובינר קצר (45-60 דק') שמוכר בסוף. לא lecture. הצצה לתהליך, הוכחת ידע, CTA אחד. הדרך הכי מהירה לנפח Room → Sales.</div>
+        <div class="module-outcome">יוצאים עם: Workshop Outline + Slide Deck + Registration Page + מכירות.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+        </div>
+      </div>
+
+      <div class="module-card" style="background: #FFFFFF; padding: 28px; border: 1px solid var(--border); border-radius: 3px;">
+        <div class="module-top">
+          <div class="module-title"><span class="module-num">S.9 </span>Case Study Comeback™</div>
+          <span class="module-tag tag-needle">NEEDLE MOVER</span>
+        </div>
+        <div class="module-desc">הלקוח הראשון = הנכס הכי יקר שיש לך. Case Study שנכתב נכון מביא 3 לקוחות הבאים. לומדים איך לתעד, לנסח, ולהוציא לאוויר — לפני שהלקוח עוד "קר."</div>
+        <div class="module-outcome">יוצאים עם: Case Study מלא מהלקוח הראשון + מוכן לפרסום.</div>
+        <div class="module-resources">
+          <span class="res-tag">V סרטון</span>
+          <span class="res-tag">P Playbook</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="posi-gate" style="border-color: var(--accent);">
+      <strong>POSI SPRINT:</strong> לקוח אחד חתם + תשלום התקבל + Case Study Template ממולא → Level 4 נפתח
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     LEVELS 4–8 BRIEF OVERVIEW
+     ============================================ -->
+<section class="section" id="levels-4-8">
+  <div class="container">
+    <div class="section-label">LEVELS 4–8 — בניית המכונה</div>
+    <h2>אחרי שיש לקוח ראשון —<br>בונים את המכונה שמביאה עוד.</h2>
+
+    <p>
+      Levels 4–8 בונים את מערכת ה-inbound. לא עוד ידיים — מנגנונים שעובדים כשאתה ישן.
+      כל Level מוסיף שכבה: תוכן, לידים, המרה, retention, ולבסוף — התרחבות.
+    </p>
+
+    <div class="module-list">
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title">Level 4 — THE COMMUNITY</div>
+          <span class="module-tag tag-needle">שבועות 9–12</span>
+        </div>
+        <div class="module-desc">בניית מכונת תוכן שמושכת לקוחות בשלים. Hook Framework, Content Pillars, Content OS. לא "לפרסם יותר" — לפרסם נכון.</div>
+        <div class="module-outcome">יוצאים עם: Content OS פעיל + Calendar מלא לחודש + Hooks Library עם 30 הוקים.</div>
+        <div class="module-resources">
+          <span class="res-tag">8 מודולים</span>
+          <span class="res-tag">Content OS</span>
+          <span class="res-tag">Hooks Library</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title">Level 5 — THE TRIP</div>
+          <span class="module-tag tag-needle">שבועות 13–15</span>
+        </div>
+        <div class="module-desc">בניית מנגנון לכידת לידים. Lead Magnet, Email Sequence, ManyChat Flow. follower → ליד ברשימה שלך — שאתה שולט בה.</div>
+        <div class="module-outcome">יוצאים עם: Lead Magnet חי + Email Sequence מוכן + ManyChat Flow פעיל.</div>
+        <div class="module-resources">
+          <span class="res-tag">6 מודולים</span>
+          <span class="res-tag">Lead Magnet</span>
+          <span class="res-tag">Email Sequence</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title">Level 6 — THE CLOSER™</div>
+          <span class="module-tag tag-needle">שבועות 16–17</span>
+        </div>
+        <div class="module-desc">מערכת המרה שמוכרת אוטומטית. VSL, Skool Community, Nurture Sequence. ליד → לקוח — בלי התערבות ידנית.</div>
+        <div class="module-outcome">יוצאים עם: VSL מוכן + Skool Community מוקם + Nurture Sequence חי.</div>
+        <div class="module-resources">
+          <span class="res-tag">5 מודולים</span>
+          <span class="res-tag">VSL</span>
+          <span class="res-tag">Skool Community</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title">Level 7 — THE ANCHOR™</div>
+          <span class="module-tag tag-needle">שבועות 18–20</span>
+        </div>
+        <div class="module-desc">בניית YouTube/Podcast שמביא לקוחות "מבושלים" — כאלה שצרכו שעות תוכן ורוצים לעבוד איתך. ה-Anchor הכי חזק לאמון.</div>
+        <div class="module-outcome">יוצאים עם: 4 אפיזודות/סרטונים חיים + Podcast/YouTube מוקם ומחובר ל-Funnel.</div>
+        <div class="module-resources">
+          <span class="res-tag">6 מודולים</span>
+          <span class="res-tag">YouTube/Podcast Setup</span>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-top">
+          <div class="module-title">Level 8 — THE OPERATOR™</div>
+          <span class="module-tag tag-needle">שבועות 21–24</span>
+        </div>
+        <div class="module-desc">Paid Traffic, Retargeting, Meta Custom Audiences. מגבירים את מה שעובד. לא מריצים פרסומות לפני שהמכונה אורגנית עובדת — עכשיו מריצים.</div>
+        <div class="module-outcome">יוצאים עם: Meta Ads Campaign חי + Custom Audiences מוגדרות + ROAS ראשוני נמדד.</div>
+        <div class="module-resources">
+          <span class="res-tag">9 מודולים</span>
+          <span class="res-tag">Meta Ads</span>
+          <span class="res-tag">Retargeting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     VALUE STACK
+     ============================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">מה כלול</div>
+    <h2>כל מה שצריך — ממקום אחד.</h2>
+
+    <p>
+      לא עוד קורס לצפות ושכוח. כל מודול מגיע עם כלים שאפשר להפעיל מיד.
+    </p>
+
+    <div class="value-stack">
+      <div class="value-item">
+        <div>
+          <div class="value-item-name">68 סרטונים (5–15 דקות כל אחד)</div>
+          <div class="value-item-desc">פנים-למצלמה. ישיר. עם דוגמאות מהשטח.</div>
+        </div>
+        <div class="value-item-price">— ₪X —</div>
+      </div>
+      <div class="value-item">
+        <div>
+          <div class="value-item-name">68 Playbooks (אחד לכל מודול)</div>
+          <div class="value-item-desc">לא סיכומים — כלי עבודה עצמאיים עם תרגילים ו-Checklist.</div>
+        </div>
+        <div class="value-item-price">— ₪X —</div>
+      </div>
+      <div class="value-item">
+        <div>
+          <div class="value-item-name">40+ תבניות מוכנות לשימוש</div>
+          <div class="value-item-desc">Offer Doc, DM Scripts, Email Sequences, Hook Templates, CRM.</div>
+        </div>
+        <div class="value-item-price">— ₪X —</div>
+      </div>
+      <div class="value-item">
+        <div>
+          <div class="value-item-name">ONE Matrix™ + Halo Document Process</div>
+          <div class="value-item-desc">Framework ה-Positioning שעומד מאחורי כל הצעה ותוכן.</div>
+        </div>
+        <div class="value-item-price">— ₪X —</div>
+      </div>
+      <div class="value-item">
+        <div>
+          <div class="value-item-name">Sprint — מכירה ראשונה תוך 30 יום</div>
+          <div class="value-item-desc">תהליך מוכח לקבל לקוח ראשון לפני שהמכונה מוכנה.</div>
+        </div>
+        <div class="value-item-price">— ₪X —</div>
+      </div>
+      <div class="value-total">
+        <span>שווי כולל</span>
+        <span>₪XX,XXX</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PLACEHOLDER: GUARANTEE
+     ============================================ -->
+<section class="section" style="padding: 80px 0;">
+  <div class="container">
+    <div class="placeholder-section">
+      <div class="placeholder-label">PLACEHOLDER — ערבות</div>
+      <div class="placeholder-title">מדיניות החזר / ערבות תוצאות</div>
+      <div class="placeholder-desc">אם עשית את כל ה-POSI Gates ולא סגרת לקוח ראשון תוך X ימים — [תנאי החזר / ליווי נוסף].</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     CTA — PLACEHOLDER
+     ============================================ -->
+<section class="cta-section">
+  <div class="container" style="max-width: var(--max-content); margin: 0 auto;">
+    <div class="section-label" style="text-align: center; margin-bottom: 12px;">מוכן להתחיל?</div>
+    <h2>כסף ראשון תוך 30 יום.<br>מכונה שעובדת אחר כך לבד.</h2>
+    <p>
+      [כפתור הרשמה / הגשת מועמדות / פרטי ההשקה — יתווסף לפני פתיחה]
+    </p>
+    <div class="placeholder-section" style="max-width: 400px; margin: 0 auto;">
+      <div class="placeholder-label">PLACEHOLDER — CTA</div>
+      <div class="placeholder-title">כפתור הרשמה / Waitlist</div>
+      <div class="placeholder-desc">מחיר, קישור, או טופס.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+  <div class="container">
+    <p>ONE™ Program — Built by Ben Levi & Avitar &nbsp;|&nbsp; 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
