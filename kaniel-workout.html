@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>תכנית אימונים — קניאל טוויטו</title>
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --surface-2: #232323;
+      --border: #2e2e2e;
+      --text: #f0f0f0;
+      --text-muted: #888;
+      --text-faint: #555;
+      --accent: #c8f135;
+      --accent-dim: rgba(200, 241, 53, 0.08);
+      --push: #f97316;
+      --pull: #38bdf8;
+      --legs: #a78bfa;
+      --push-dim: rgba(249, 115, 22, 0.08);
+      --pull-dim: rgba(56, 189, 248, 0.08);
+      --legs-dim: rgba(167, 139, 250, 0.08);
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 40px 24px 80px;
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      max-width: 860px;
+      margin: 0 auto 48px;
+    }
+    .header-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .header h1 span {
+      color: var(--accent);
+    }
+    .badge {
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+    .header-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .meta-label {
+      font-size: 11px;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .meta-value {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ─── SPLIT BAR ─── */
+    .split-bar {
+      max-width: 860px;
+      margin: 0 auto 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .split-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .split-pill.push { border-color: rgba(249,115,22,0.3); background: var(--push-dim); }
+    .split-pill.pull { border-color: rgba(56,189,248,0.3); background: var(--pull-dim); }
+    .split-pill.legs { border-color: rgba(167,139,250,0.3); background: var(--legs-dim); }
+    .split-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .push .split-dot { background: var(--push); }
+    .pull .split-dot { background: var(--pull); }
+    .legs .split-dot { background: var(--legs); }
+    .split-pill-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .push .split-pill-label { color: var(--push); }
+    .pull .split-pill-label { color: var(--pull); }
+    .legs .split-pill-label { color: var(--legs); }
+    .split-pill-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    /* ─── DAY CARD ─── */
+    .day-card {
+      max-width: 860px;
+      margin: 0 auto 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .day-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .day-header.push { border-right: 3px solid var(--push); }
+    .day-header.pull { border-right: 3px solid var(--pull); }
+    .day-header.legs { border-right: 3px solid var(--legs); }
+    .day-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .day-num {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-faint);
+    }
+    .day-name {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .push .day-name { color: var(--push); }
+    .pull .day-name { color: var(--pull); }
+    .legs .day-name { color: var(--legs); }
+    .day-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .day-stats {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .push .stat-num { color: var(--push); }
+    .pull .stat-num { color: var(--pull); }
+    .legs .stat-num { color: var(--legs); }
+    .stat-label {
+      font-size: 10px;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 3px;
+    }
+
+    /* ─── TABLE ─── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    thead tr {
+      background: var(--surface-2);
+    }
+    thead th {
+      padding: 10px 24px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-align: right;
+    }
+    thead th:first-child { width: 32px; text-align: center; }
+    tbody tr {
+      border-top: 1px solid var(--border);
+      transition: background 0.12s;
+    }
+    tbody tr:hover { background: var(--surface-2); }
+    tbody td {
+      padding: 13px 24px;
+      font-size: 14px;
+      color: var(--text);
+    }
+    tbody td:first-child {
+      text-align: center;
+      color: var(--text-faint);
+      font-size: 12px;
+      font-weight: 600;
+      width: 32px;
+    }
+    .exercise-name {
+      font-weight: 500;
+    }
+    .exercise-type {
+      font-size: 11px;
+      color: var(--text-faint);
+      margin-top: 1px;
+    }
+    .sets-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .weight-badge {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    .weight-bw {
+      color: var(--text-faint);
+      font-weight: 500;
+    }
+
+    /* ─── NOTE ─── */
+    .day-note {
+      padding: 14px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-muted);
+      background: var(--surface-2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .day-note::before {
+      content: "★";
+      font-size: 10px;
+      color: var(--accent);
+    }
+
+    /* ─── CARDIO / NOTES ─── */
+    .bottom-row {
+      max-width: 860px;
+      margin: 48px auto 28px;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+    }
+    .info-card-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 12px;
+    }
+    .info-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-key { color: var(--text-muted); }
+    .info-val { color: var(--text); font-weight: 600; }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      max-width: 860px;
+      margin: 40px auto 0;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-faint);
+    }
+
+    @media (max-width: 600px) {
+      .split-bar { grid-template-columns: 1fr; }
+      .bottom-row { grid-template-columns: 1fr; }
+      .day-stats { display: none; }
+      
+      
+    }
+
+    @media print {
+      body { background: #fff; color: #000; padding: 20px; }
+      .day-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── HEADER ─── -->
+  <header class="header">
+    <div class="header-top">
+      <div>
+        <h1>קניאל <span>טוויטו</span></h1>
+        <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">תכנית כוח — 3 ימי אימון בשבוע</div>
+      </div>
+      <span class="badge">PPL Split</span>
+    </div>
+    <div class="header-meta">
+      <div class="meta-item"><span class="meta-label">ספליט</span><span class="meta-value">Push / Pull / Legs</span></div>
+      <div class="meta-item"><span class="meta-label">ימי אימון</span><span class="meta-value">3 בשבוע</span></div>
+      <div class="meta-item"><span class="meta-label">משך אימון</span><span class="meta-value">65–80 דקות</span></div>
+      <div class="meta-item"><span class="meta-label">שלב נוכחי</span><span class="meta-value">Mini-Cut</span></div>
+      <div class="meta-item"><span class="meta-label">עודכן</span><span class="meta-value">מאי 2026</span></div>
+    </div>
+  </header>
+
+  <!-- ─── SPLIT BAR ─── -->
+  <div class="split-bar">
+    <div class="split-pill push">
+      <span class="split-dot"></span>
+      <div>
+        <div class="split-pill-label">יום A — Push</div>
+        <div class="split-pill-sub">חזה · כתפיים · טריספס</div>
+      </div>
+    </div>
+    <div class="split-pill pull">
+      <span class="split-dot"></span>
+      <div>
+        <div class="split-pill-label">יום B — Pull</div>
+        <div class="split-pill-sub">גב · ביספס</div>
+      </div>
+    </div>
+    <div class="split-pill legs">
+      <span class="split-dot"></span>
+      <div>
+        <div class="split-pill-label">יום C — Legs</div>
+        <div class="split-pill-sub">רגליים · ירכיים · בטן</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DAY A: PUSH ─── -->
+  <div class="day-card">
+    <div class="day-header push">
+      <div class="day-title">
+        <div>
+          <div class="day-num">יום A</div>
+          <div class="day-name">Push</div>
+          <div class="day-sub">חזה · כתפיים · טריספס</div>
+        </div>
+      </div>
+      <div class="day-stats">
+        <div class="stat push">
+          <div class="stat-num">7</div>
+          <div class="stat-label">תרגילים</div>
+        </div>
+        <div class="stat push">
+          <div class="stat-num">22</div>
+          <div class="stat-label">סטים</div>
+        </div>
+        <div class="stat push">
+          <div class="stat-num">~75</div>
+          <div class="stat-label">דקות</div>
+        </div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>תרגיל</th>
+          <th>סטים × חזרות</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>
+            <div class="exercise-name">Bench Press</div>
+            <div class="exercise-type">Barbell · עיקרי חזה</div>
+          </td>
+          <td><span class="sets-badge">4 × 6–8</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>
+            <div class="exercise-name">Overhead Press</div>
+            <div class="exercise-type">Barbell · עיקרי כתפיים</div>
+          </td>
+          <td><span class="sets-badge">3 × 5–6</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>
+            <div class="exercise-name">Incline Bench Press</div>
+            <div class="exercise-type">Smith Machine</div>
+          </td>
+          <td><span class="sets-badge">3 × 8–10</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>
+            <div class="exercise-name">Lateral Raise</div>
+            <div class="exercise-type">Dumbbell · כתפיים צד</div>
+          </td>
+          <td><span class="sets-badge">3 × 12–15</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>
+            <div class="exercise-name">Cable Crossover</div>
+            <div class="exercise-type">Cable · עיצוב חזה</div>
+          </td>
+          <td><span class="sets-badge">3 × 12–15</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>
+            <div class="exercise-name">Face Pull</div>
+            <div class="exercise-type">Cable · כתף אחורי</div>
+          </td>
+          <td><span class="sets-badge">3 × 15</span></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>
+            <div class="exercise-name">Triceps Pushdown</div>
+            <div class="exercise-type">Cable · טריספס</div>
+          </td>
+          <td><span class="sets-badge">3 × 12</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="day-note">Bench + OHP — הגעת לחזרה העליונה 2 שבועות רצוף → +2.5kg. שאר התרגילים — RPE 8.</div>
+  </div>
+
+  <!-- ─── DAY B: PULL ─── -->
+  <div class="day-card">
+    <div class="day-header pull">
+      <div class="day-title">
+        <div>
+          <div class="day-num">יום B</div>
+          <div class="day-name">Pull</div>
+          <div class="day-sub">גב · ביספס</div>
+        </div>
+      </div>
+      <div class="day-stats">
+        <div class="stat pull">
+          <div class="stat-num">7</div>
+          <div class="stat-label">תרגילים</div>
+        </div>
+        <div class="stat pull">
+          <div class="stat-num">23</div>
+          <div class="stat-label">סטים</div>
+        </div>
+        <div class="stat pull">
+          <div class="stat-num">~70</div>
+          <div class="stat-label">דקות</div>
+        </div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>תרגיל</th>
+          <th>סטים × חזרות</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>
+            <div class="exercise-name">Lat Pulldown</div>
+            <div class="exercise-type">Cable · עיקרי גב</div>
+          </td>
+          <td><span class="sets-badge">4 × 8–10</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>
+            <div class="exercise-name">Seated Cable Row</div>
+            <div class="exercise-type">Cable · עובי גב</div>
+          </td>
+          <td><span class="sets-badge">4 × 10</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>
+            <div class="exercise-name">Iso-Lateral Row</div>
+            <div class="exercise-type">Machine</div>
+          </td>
+          <td><span class="sets-badge">3 × 10–12</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>
+            <div class="exercise-name">Dumbbell Pullover</div>
+            <div class="exercise-type">Dumbbell · גב עליון</div>
+          </td>
+          <td><span class="sets-badge">3 × 12</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>
+            <div class="exercise-name">Barbell Bicep Curl</div>
+            <div class="exercise-type">Barbell · עיקרי ביספס</div>
+          </td>
+          <td><span class="sets-badge">3 × 8–10</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>
+            <div class="exercise-name">Incline Dumbbell Curl</div>
+            <div class="exercise-type">Dumbbell · ביספס</div>
+          </td>
+          <td><span class="sets-badge">3 × 10–12</span></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>
+            <div class="exercise-name">Hanging Knee Raise</div>
+            <div class="exercise-type">BW · בטן</div>
+          </td>
+          <td><span class="sets-badge">3 × 15</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="day-note">Lat Pulldown + Row — עמוד שדרה של הספליט. שמור על full ROM. אל תיפול על momentum בcurl.</div>
+  </div>
+
+  <!-- ─── DAY C: LEGS ─── -->
+  <div class="day-card">
+    <div class="day-header legs">
+      <div class="day-title">
+        <div>
+          <div class="day-num">יום C</div>
+          <div class="day-name">Legs + Core</div>
+          <div class="day-sub">רגליים · ירכיים · ושטים · בטן</div>
+        </div>
+      </div>
+      <div class="day-stats">
+        <div class="stat legs">
+          <div class="stat-num">7</div>
+          <div class="stat-label">תרגילים</div>
+        </div>
+        <div class="stat legs">
+          <div class="stat-num">24</div>
+          <div class="stat-label">סטים</div>
+        </div>
+        <div class="stat legs">
+          <div class="stat-num">~80</div>
+          <div class="stat-label">דקות</div>
+        </div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>תרגיל</th>
+          <th>סטים × חזרות</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>
+            <div class="exercise-name">Leg Press</div>
+            <div class="exercise-type">Machine · ארבע ראשי</div>
+          </td>
+          <td><span class="sets-badge">4 × 12</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>
+            <div class="exercise-name">Leg Extension</div>
+            <div class="exercise-type">Machine · ארבע ראשי</div>
+          </td>
+          <td><span class="sets-badge">4 × 12</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>
+            <div class="exercise-name">Seated Leg Curl</div>
+            <div class="exercise-type">Machine · Hamstrings</div>
+          </td>
+          <td><span class="sets-badge">3 × 10–12</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>
+            <div class="exercise-name">Standing Calf Raise</div>
+            <div class="exercise-type">Machine</div>
+          </td>
+          <td><span class="sets-badge">4 × 12–15</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>
+            <div class="exercise-name">Cable Crunch</div>
+            <div class="exercise-type">Cable · בטן עליונה</div>
+          </td>
+          <td><span class="sets-badge">4 × 15–20</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>
+            <div class="exercise-name">Captain's Chair Knee Raise</div>
+            <div class="exercise-type">BW · בטן תחתונה</div>
+          </td>
+          <td><span class="sets-badge">3 × 15</span></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>
+            <div class="exercise-name">Russian Twist</div>
+            <div class="exercise-type">BW · אלכסוניים</div>
+          </td>
+          <td><span class="sets-badge">3 × 20–30</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="day-note">האימון הכבד בשבוע — Leg Press + Curl = עמוד. אם עייף, קצר בcore ולא ברגליים.</div>
+  </div>
+
+  <!-- ─── BOTTOM ROW ─── -->
+  <div class="bottom-row">
+    <div class="info-card">
+      <div class="info-card-title">לוח שבועי</div>
+      <div class="info-row"><span class="info-key">ראשון</span><span class="info-val">Push (A)</span></div>
+      <div class="info-row"><span class="info-key">שלישי</span><span class="info-val">Pull (B)</span></div>
+      <div class="info-row"><span class="info-key">חמישי</span><span class="info-val">Legs + Core (C)</span></div>
+      <div class="info-row"><span class="info-key">ו׳–ש׳</span><span class="info-val">מנוחה / ריצה קלה</span></div>
+      <div class="info-row"><span class="info-key">שעות אימון</span><span class="info-val">14:30–16:30</span></div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">כללי progression</div>
+      <div class="info-row"><span class="info-key">חזרות עליונות × 2 שבועות</span><span class="info-val">+2.5 kg</span></div>
+      <div class="info-row"><span class="info-key">RPE ממוצע לסט</span><span class="info-val">8</span></div>
+      <div class="info-row"><span class="info-key">Deload</span><span class="info-val">כל 4 שבועות</span></div>
+      <div class="info-row"><span class="info-key">מנוחה בין סטים</span><span class="info-val">2–3 דקות</span></div>
+      <div class="info-row"><span class="info-key">שלב</span><span class="info-val">Mini-Cut פעיל</span></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    קניאל טוויטו · תכנית PPL · 3 ימים בשבוע
+  </footer>
+
+</body>
+</html>
